@@ -1,17 +1,12 @@
 import React from 'react'
-import { createBrowserRouter , RouterProvider} from 'react-router-dom'
-import Home from './components/Home'
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home/>
-  }
-])
+import { Outlet } from 'react-router-dom'
+import Navbar from './components/Navbar.jsx'
 
 function App() {
   return (
     <>
+    <Navbar />
+    <Outlet/>
     </>
   )
 }
