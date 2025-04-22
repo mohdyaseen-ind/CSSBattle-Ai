@@ -1,26 +1,31 @@
 import React,{useState} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Sandpack } from '@codesandbox/sandpack-react';
+import { useLocation } from 'react-router-dom';
 
 const Challenge = () => {
-    const [html,setHtml] = useState('<div class="card">Hello</div>')
+    const [userHtml,setUserHtml] = useState('<div class="card">Hello</div>')
     const navigate  = useNavigate()
+
+    const location = useLocation();
+    const {aiHtml,name} = location.state
 
     function handleSubmit(){
         navigate('/submit',{
-            state: {html}
+            state: {aiHtml:aiHtml,userHtml:userHtml,name:name}
         })
     }
 
   return (
     <div className='min-h-screen bg-black text-white p-6'>
+      <div className='lg:ml-80'>
         <h2 className='text-3xl font-bold mb-4'>Clone the Design Below</h2>
 
-        <div className="flex justify-center mb-6">
-        <img
-          src="/challenge.png"
-          alt="Challenge Design"
-          className="max-w-full w-[600px] rounded-md shadow-lg border border-gray-700"
+        <iframe
+          title={name}
+          className='w-[30%] h-[250px] border border-gray-300 rounded-lg'
+          sandbox=""
+          srcDoc={aiHtml}
         />
       </div>
 
@@ -36,12 +41,13 @@ const Challenge = () => {
   customSetup={{
     files: {
         "/index.html": {
-          code: html,
+          code: userHtml,
+          active: true,
         },
     },
   }}
   onCodeChange={(code) => {
-    setHtml(code)
+    setUserHtml(code)
   }}
 />
 

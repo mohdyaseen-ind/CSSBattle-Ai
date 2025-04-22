@@ -8,8 +8,7 @@ const SelectChallenge = () => {
 
   useEffect(() => {
     const fetchChallenges = async () => {
-      const generatedChallenges = await generateChallenges(); // Get challenges from Gemini
-      console.log("Challenges received in SelectChallenge:", generatedChallenges);
+      const generatedChallenges = await generateChallenges();
       setChallenges(generatedChallenges);
     };
 
@@ -17,9 +16,8 @@ const SelectChallenge = () => {
   }, []);
 
   const handleSelectChallenge = (challenge) => {
-    console.log("Selected challenge:", challenge);
     navigate('/challenge', {
-      state: { html: challenge.html, css: challenge.css, name: challenge.name }
+      state: { aiHtml: challenge.html, name: challenge.name }
     });
   };
 
@@ -36,7 +34,12 @@ const SelectChallenge = () => {
             className="challenge-card p-4 bg-gray-800 rounded-lg shadow-md hover:bg-gray-700 cursor-pointer"
             onClick={() => handleSelectChallenge(challenge)}
           >
-            <img src={challenge.image} alt="Image" />
+            <iframe
+              title={challenge.name}
+              style={{ width: '100%', height: '300px', border: '1px solid #ccc', borderRadius: '8px' }}
+              sandbox=""
+              srcDoc={challenge.html}
+            />
             <h3 className="text-xl font-semibold">{challenge.name}</h3>
             <p>{challenge.description}</p>
           </div>

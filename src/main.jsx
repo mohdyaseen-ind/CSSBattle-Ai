@@ -8,6 +8,8 @@ import Challenge from './pages/Challenge.jsx'
 import Leaderboard from './pages/Leaderboard.jsx'
 import Submit from './pages/Submit.jsx'
 import SelectChallenge from './pages/SelectChallenge.jsx'
+import Login from './pages/Login.jsx'
+import Signup from './pages/SignUp.jsx'
 
 const router = createBrowserRouter([
   {
@@ -35,6 +37,14 @@ const router = createBrowserRouter([
         element: <Challenge/>
       },
     ]
+  },
+  {
+    path: '/login',
+    element: <Login/>
+  },
+  {
+    path: '/signup',
+    element: <Signup/>
   }
 ])
 
