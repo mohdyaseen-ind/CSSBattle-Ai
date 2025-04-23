@@ -25,3 +25,5 @@ dist-ssr
 .env
 .env
 .env
+.gitsecret/keys/random_seed
+!*.secret

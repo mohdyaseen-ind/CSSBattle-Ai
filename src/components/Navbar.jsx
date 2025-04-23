@@ -5,8 +5,17 @@ import { auth } from '../firebase'; // adjust if needed
 
 const Navbar = () => {
   const [user, setUser] = useState(null);
+  const [scrolled, setScrolled] = useState(false);
 
-  // ✅ This effect tracks the login state
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
@@ -20,19 +29,21 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className='flex items-center justify-between bg-black text-white py-10 min-h-[64px] px-6'>
-      <h1 className='text-xl font-bold'>UI-THRONE 👑</h1>
-      <ul className='flex items-center gap-6'>
+    <div className={`top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      scrolled ? 'bg-gray-900/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'
+    } flex items-center justify-between`}>
+      <h1 className='flex items-center space-x-2 text-violet-400 hover:text-violet-300 transition-colors text-xl font-bold'>UI-THRONE 👑</h1>
+      <ul className='hidden md:flex items-center space-x-8'>
         {!user ? (
           <>
-            <li><Link to="/login" className="hover:text-gray-400 transition">Login</Link></li>
-            <li><Link to="/signup" className="hover:text-gray-400 transition">Signup</Link></li>
+            <li><Link to="/login" className="bg-violet-600 hover:bg-violet-700 text-white px-4 py-2 rounded-md transition-colors font-medium">Login</Link></li>
+            <li><Link to="/signup" className="bg-violet-600 hover:bg-violet-700 text-white px-4 py-2 rounded-md transition-colors font-medium">Signup</Link></li>
           </>
         ) : (
           <>
-            <li><Link to="/" className="hover:text-gray-400 transition">Home</Link></li>
-            <li><Link to="/selectChallenge" className="hover:text-gray-400 transition">Challenge</Link></li>
-            <li><Link to="/leaderboard" className="hover:text-gray-400 transition">Leaderboard</Link></li>
+            <li><Link to="/" className="bg-violet-600 hover:bg-violet-700 text-white px-4 py-2 rounded-md transition-colors font-medium">Home</Link></li>
+            <li><Link to="/selectChallenge" className="bg-violet-600 hover:bg-violet-700 text-white px-4 py-2 rounded-md transition-colors font-medium">Challenge</Link></li>
+            <li><Link to="/leaderboard" className="bg-violet-600 hover:bg-violet-700 text-white px-4 py-2 rounded-md transition-colors font-medium">Leaderboard</Link></li>
           </>
         )}
       </ul>

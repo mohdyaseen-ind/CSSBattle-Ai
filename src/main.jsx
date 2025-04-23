@@ -10,6 +10,7 @@ import Submit from './pages/Submit.jsx'
 import SelectChallenge from './pages/SelectChallenge.jsx'
 import Login from './pages/Login.jsx'
 import Signup from './pages/SignUp.jsx'
+import { UserProvider } from './UserContext';
 
 const router = createBrowserRouter([
   {
@@ -49,5 +50,7 @@ const router = createBrowserRouter([
 ])
 
 createRoot(document.getElementById('root')).render(
+  <UserProvider>
     <RouterProvider router={router}/>
+</UserProvider>,
 )

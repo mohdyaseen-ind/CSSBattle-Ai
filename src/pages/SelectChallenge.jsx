@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { generateChallenges } from '../api/generateChallenges';
+import Shimmer from './Shimmer';
 
 const SelectChallenge = () => {
   const [challenges, setChallenges] = useState([]);
@@ -21,7 +22,7 @@ const SelectChallenge = () => {
     });
   };
 
-  if (!challenges.length) return <div>Loading challenges...</div>;
+  if (!challenges.length) return <Shimmer/>;
 
   return (
     <div className="min-h-screen bg-black text-white p-6">

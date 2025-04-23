@@ -32,21 +32,14 @@ const Challenge = () => {
       <Sandpack
   template="static"
   theme="dark"
-  options={{
-    showLineNumbers: true,
-    showTabs: true,
-    wrapContent: true,
-    editorHeight: 400,
-  }}
-  customSetup={{
-    files: {
-        "/index.html": {
-          code: userHtml,
-          active: true,
-        },
+  files={{
+    "/index.html": {
+      code: "<h1>Hello World</h1>",
+      active: true,
     },
   }}
   onCodeChange={(code) => {
+    console.log(code)
     setUserHtml(code)
   }}
 />

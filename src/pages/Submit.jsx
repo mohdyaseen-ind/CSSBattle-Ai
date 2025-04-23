@@ -1,11 +1,17 @@
 import React,{useState,useEffect} from 'react'
 import {useLocation,useNavigate} from 'react-router-dom'
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../firebase"
+
+
  
 const Submit = () => {
   const location = useLocation()
-  const {aiHtml,userHtml,name} = location.state
+  const {aiHtml,userHtml,name,user} = location.state
   const navigate = useNavigate()
+
+  
 
   const [score, setScore] = useState(null);
   const [feedback, setFeedback] = useState('');
@@ -52,6 +58,14 @@ ${userHtml}
         const text = await result.response.text();
         const clean = text.replace(/```json|```/g, '').trim();
         const parsed = JSON.parse(clean);
+        if (user && parsed.score) {
+          await setDoc(doc(db, "users", user.uid), {
+            name: user.displayName || "Anonymous",
+            avatar: user.photoURL || "",
+            score: parsed.score,
+            email: user.email,
+          });
+        }
         setScore(parsed.score);
         setFeedback(parsed.feedback);
 
