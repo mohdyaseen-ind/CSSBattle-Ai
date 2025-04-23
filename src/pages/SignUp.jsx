@@ -11,7 +11,7 @@ const Signup = () => {
   const handleSignup = async () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      navigate('/challenge'); // or /login if you want them to log in after signup
+      navigate('/'); 
     } catch (error) {
       alert(error.message);
     }

@@ -11,7 +11,7 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate('/selectChallenge');
+      navigate('/');
     } catch (error) {
       alert("Login failed: " + error.message);
     }

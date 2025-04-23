@@ -18,10 +18,10 @@ const UserProvider = ({ children }) => {
     }, [auth]);
 
     return (
-        <UserContext.Provider value={user}>
+        <UserContext.Provider value={{user,setUser}}>
             {children}
         </UserContext.Provider>
     );
 };
 
-export { UserContext, UserProvider }; // Ensure UserProvider is exported
+export { UserContext, UserProvider }; 
