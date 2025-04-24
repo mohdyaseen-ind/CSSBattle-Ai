@@ -17,16 +17,12 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 py-4 ${
-        scrolled
-          ? 'bg-gradient-to-r from-[#1f0036]/80 to-[#0d001a]/80 backdrop-blur-md shadow-md'
-          : 'bg-transparent'
-      }`}
+     className='bg-violet-900' 
     >
-      <div className="flex items-center justify-between max-w-7xl mx-auto">
+      <div className="flex items-center justify-between min-w-full mx-auto">
         <Link
           to="/"
-          className="text-2xl font-extrabold text-violet-400 hover:text-fuchsia-400 transition-colors tracking-tight"
+          className="text-2xl font-extrabold text-violet-950 hover:text-fuchsia-400 transition-colors tracking-tight"
         >
           UI-THRONE 👑
         </Link>

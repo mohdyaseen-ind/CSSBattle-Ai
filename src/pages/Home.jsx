@@ -19,7 +19,7 @@ const Home = () => {
   const { user, setUser } = useContext(UserContext);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1f0036] to-[#0d001a] text-white flex flex-col justify-center items-center px-6 py-16">
+    <div className="min-h-screen bg-gradient-to-br from-[#1f0036] to-[#0d001a] text-white flex flex-col justify-center items-center px-6 py-16 gap-20">
       <section className="w-full max-w-4xl text-center mb-20">
         <h1 className="text-5xl font-extrabold bg-gradient-to-r from-violet-400 to-fuchsia-500 bg-clip-text text-transparent mb-6">
           Master CSS with AI-Powered Challenges

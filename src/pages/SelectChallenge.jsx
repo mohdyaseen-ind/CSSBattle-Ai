@@ -25,10 +25,10 @@ const SelectChallenge = () => {
   if (!challenges.length) return <Shimmer/>;
 
   return (
-    <div className="min-h-screen bg-black text-white p-6">
+    <div className="min-h-min bg-black text-white p-6">
       <h2 className="text-3xl font-bold mb-6">Choose Your Challenge</h2>
 
-      <div className="flex flex-wrap gap-6">
+      <div className="grid grid-cols-4 grid-rows-2 gap-10">
         {challenges.map((challenge, index) => (
           <div
             key={index}

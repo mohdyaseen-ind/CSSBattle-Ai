@@ -4,14 +4,14 @@ import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
 import { UserProvider } from './UserContext.jsx'
 
-const App = () =>{
-
+const App = () => {
   return (
     <UserProvider>
-      <Navbar />
-      <Outlet />
-      <Footer />
+      <Navbar/>
+      <Outlet/>
+      <Footer/>
     </UserProvider>
   )
 }
+
 export default App

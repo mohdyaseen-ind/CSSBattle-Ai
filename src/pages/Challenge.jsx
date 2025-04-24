@@ -17,7 +17,7 @@ const Challenge = () => {
     }
 
   return (
-    <div className='min-h-screen bg-black text-white p-6'>
+    <div className='min-h-screen pt-24 bg-black text-white px-4 flex flex-col'>
       <div className='lg:ml-80'>
         <h2 className='text-3xl font-bold mb-4'>Clone the Design Below</h2>
 
@@ -39,7 +39,6 @@ const Challenge = () => {
     },
   }}
   onCodeChange={(code) => {
-    console.log(code)
     setUserHtml(code)
   }}
 />
