@@ -1,6 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
+const VITE_GEMINI_API_KEY="AIzaSyBmCRuC7r4E_oqqMcnXEtm_Ju3LW3mXu28"
 
-const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
+const genAI = new GoogleGenerativeAI(VITE_GEMINI_API_KEY);
 
 export const evaluateClone = async (userHtml) => {
   const prompt = `
