@@ -1,10 +1,11 @@
-import React,{useState,useEffect} from 'react';
+import React from 'react';
 import { Code2, Sparkles, Trophy } from 'lucide-react';
 import FeatureCard from '../components/FeatureCard.jsx';
 import { auth, provider } from '../firebase';
 import { signInWithPopup } from 'firebase/auth';
 import { UserContext } from '../UserContext.jsx';
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 
 const handleGoogleLogin = async () => {
   try {
@@ -33,14 +34,17 @@ const Home = () => {
             <div className="flex justify-center space-x-4">
           {user ? <>        
               <button className="bg-violet-600 hover:bg-violet-700 text-white px-8 py-3 rounded-lg font-medium transition-colors shadow-lg">
-                Start Challenge
+                <Link to="selectChallenge">Start Challenge</Link>
               </button>
-              <button className="border border-violet-600/50 hover:border-violet-600 text-violet-400 px-8 py-3 rounded-lg font-medium transition-colors">
-                Learn More
-              </button> 
               </> : <>
               <button className="bg-violet-600 hover:bg-violet-700 text-white px-8 py-3 rounded-lg font-medium transition-colors shadow-lg" onClick={handleGoogleLogin}>
                 SignIn with Google
+              </button>
+              <button className="bg-violet-600 hover:bg-violet-700 text-white px-8 py-3 rounded-lg font-medium transition-colors shadow-lg">
+                <Link to="/login">Login</Link>
+              </button>
+              <button className="bg-violet-600 hover:bg-violet-700 text-white px-8 py-3 rounded-lg font-medium transition-colors shadow-lg" onClick={handleGoogleLogin}>
+              <Link to="/signup">SignUp</Link>
               </button>
               </>}
 

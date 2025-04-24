@@ -37,20 +37,18 @@ const router = createBrowserRouter([
         path: '/challenge',
         element: <Challenge/>
       },
+      {
+        path: '/login',
+        element: <Login/>
+      },
+      {
+        path: '/signup',
+        element: <Signup/>
+      }
     ]
   },
-  {
-    path: '/login',
-    element: <Login/>
-  },
-  {
-    path: '/signup',
-    element: <Signup/>
-  }
 ])
 
 createRoot(document.getElementById('root')).render(
-  <UserProvider>
     <RouterProvider router={router}/>
-</UserProvider>,
 )
