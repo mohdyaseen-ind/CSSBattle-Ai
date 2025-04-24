@@ -11,11 +11,13 @@ import Submit from './pages/Submit.jsx'
 import SelectChallenge from './pages/SelectChallenge.jsx'
 import Login from './pages/Login.jsx'
 import Signup from './pages/SignUp.jsx'
+import Error from './pages/Error.jsx'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    errorElement : <Error/>,
     children: [
       { path: '', element: <Home /> },
       { path: 'selectChallenge', element: <SelectChallenge /> },
