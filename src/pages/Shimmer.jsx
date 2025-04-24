@@ -10,7 +10,7 @@ const Shimmer = () => {
   return (
     <div className='flex flex-col justify-center items-center bg-black'>
       <h1 className='text-white'>Loading Challenges...</h1>
-    <div className="grid grid-cols-4 grid-rows-2 gap-9">
+    <div className="grid grid-cols-4 grid-rows-2 gap-9"> 
       {shimmerArray.map((_, idx) => (
         <ShimmerCard key={idx} />
       ))}
