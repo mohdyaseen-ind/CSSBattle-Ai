@@ -4,8 +4,7 @@ import { Github, Linkedin, Code } from 'lucide-react';
 const Footer = () => {
   return (
     <footer className="bg-gray-50 border-t border-gray-200 py-8">
-      <div className="container mx-auto px-6 md:px-12">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="flex  md:flex-row items-center justify-around">
           
           <div className="flex items-center space-x-2">
             <Code className="text-blue-600" size={22} />
@@ -37,10 +36,9 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-6 text-center text-xs text-gray-500">
+        <div className="text-center text-xs text-gray-500">
           Built with ❤️ to blend creativity and code.
         </div>
-      </div>
     </footer>
   );
 };

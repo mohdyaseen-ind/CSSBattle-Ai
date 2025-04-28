@@ -1,30 +1,21 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../UserContext';
 
 const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
   const { user } = useContext(UserContext);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll); 
-  }, []);
 
   return (
     <nav
-     className='bg-violet-900' 
+     className='bg-black text-white shadow-md transition-all duration-300' 
     >
       <div className="flex items-center justify-between min-w-full mx-auto">
         <Link
           to="/"
-          className="text-2xl font-extrabold text-violet-950 hover:text-fuchsia-400 transition-colors tracking-tight"
+          className="flex items-center text-2xl font-bold text-white py-4 px-6"
         >
-          UI-THRONE 👑
+          CSSBattle AI
         </Link>
 
         <ul className="hidden md:flex items-center space-x-4">

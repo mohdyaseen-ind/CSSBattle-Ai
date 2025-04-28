@@ -16,11 +16,11 @@ const handleGoogleLogin = async () => {
 };
 
 const Home = () => {
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1f0036] to-[#0d001a] text-white flex flex-col justify-center items-center px-6 py-16 gap-20">
-      <section className="w-full max-w-4xl text-center mb-20">
+      <section className="w-full max-w-4xl text-center mb-20 flex flex-col items-center gap-4">
         <h1 className="text-5xl font-extrabold bg-gradient-to-r from-violet-400 to-fuchsia-500 bg-clip-text text-transparent mb-6">
           Master CSS with AI-Powered Challenges
         </h1>
@@ -30,7 +30,7 @@ const Home = () => {
         <div className="flex flex-wrap justify-center gap-4">
           {user ? (
             <Link to="selectChallenge">
-              <button className="bg-violet-600 hover:bg-violet-700 text-white px-8 py-3 rounded-lg font-medium transition-colors">
+              <button className="bg-violet-600 hover:bg-violet-700 text-white px-8 py-3 rounded-lg font-medium transition-colors w-30.5 h-10.5 cursor-pointer">
                 Start Challenge
               </button>
             </Link>
