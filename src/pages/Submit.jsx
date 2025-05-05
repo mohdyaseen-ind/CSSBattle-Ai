@@ -86,7 +86,7 @@ ${userHtml}
         timestamp: serverTimestamp(),
       });
       console.log('Leaderboard updated ✅');
-      navigate('/leaderboard');
+      navigate('/leaderboard'); 
     } catch (error) {
       console.error('Error saving to leaderboard: ', error);
     }
