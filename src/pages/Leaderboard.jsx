@@ -1,45 +1,68 @@
-import React, { useContext } from 'react';
-import { UserContext } from '../UserContext'; // Import UserContext
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { db } from '../firebase';
+import { collection, query, orderBy, limit, onSnapshot } from "firebase/firestore";
 
 const Leaderboard = () => {
-    const user = useContext(UserContext); // Consume the UserContext to get the user data
-    const navigate = useNavigate();
+  const [leaderboard, setLeaderboard] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-    // You can use the user object here, for example, display the user's name
-    if (!user) {
-        return <div>Please log in to see the leaderboard.</div>;
-    }
-
-    // Example of handling navigation or rendering user-specific data
-    function handleViewProfile() {
-        navigate('/profile', {
-            state: { userId: user.uid, userName: user.displayName }
-        });
-    }
-
-    return (
-        <div className="min-h-screen bg-black text-white p-6">
-            <h2 className="text-3xl font-bold mb-4">Leaderboard</h2>
-
-            {/* Displaying the logged-in user's name */}
-            <div className="mb-4">
-                <h3 className="text-xl font-semibold">Hello, {user.displayName}</h3>
-                <p>Email: {user.email}</p>
-            </div>
-
-            <div className="mt-8 text-center">
-                <button
-                    onClick={handleViewProfile}
-                    className="bg-purple-600 hover:bg-purple-700 px-6 py-3 rounded-lg font-semibold text-white"
-                >
-                    View Profile
-                </button>
-            </div>
-
-            {/* Add leaderboard content here */}
-        </div>
+  useEffect(() => {
+    const leaderboardQuery = query(
+      collection(db, "leaderboard"),
+      orderBy('score', 'asc'),
+      limit(10)
     );
+
+    const unsubscribe = onSnapshot(leaderboardQuery, (snapshot) => {
+      const leaderboardData = snapshot.docs.map(doc => doc.data());
+      setLeaderboard(leaderboardData);
+      setLoading(false);
+    });
+
+    return () => unsubscribe(); // Always clean up listeners
+  }, []);
+
+  const getMedal = (rank) => {
+    if (rank === 0) return '🥇';
+    if (rank === 1) return '🥈';
+    if (rank === 2) return '🥉';
+    return rank + 1;
+  };
+
+  return (
+    <div className="min-h-screen bg-[#1d1e20] text-white flex flex-col items-center justify-start pt-20 px-4">
+      <h1 className="text-4xl font-bold mb-10 text-center bg-gradient-to-r from-purple-400 to-pink-500 text-transparent bg-clip-text">
+        Global Leaderboard
+      </h1>
+
+      <div className="w-full max-w-4xl">
+        {loading ? (
+          <p className="text-center text-gray-400">Loading leaderboard... ⏳</p>
+        ) : leaderboard.length === 0 ? (
+          <p className="text-center text-gray-400">No leaderboard data yet!</p>
+        ) : (
+          <table className="w-full table-auto text-center border-collapse">
+            <thead>
+              <tr className="text-purple-300 text-lg">
+                <th className="py-3 border-b border-gray-600">Rank</th>
+                <th className="py-3 border-b border-gray-600">Name</th>
+                <th className="py-3 border-b border-gray-600">Score (ms)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {leaderboard.map((entry, index) => (
+                <tr key={index} className="hover:bg-[#292b30] transition">
+                  <td className="py-4">{getMedal(index)}</td>
+                  <td className="py-4">{entry.name}</td>
+                  <td className="py-4">{entry.score}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default Leaderboard;

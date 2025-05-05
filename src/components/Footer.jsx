@@ -8,7 +8,7 @@ const Footer = () => {
           
           <div className="flex items-center space-x-2">
             <Code className="text-blue-600" size={22} />
-            <span className="text-lg font-semibold text-gray-800">UI Throne</span>
+            <span className="text-lg font-semibold text-gray-800">CSS Battle AI</span>
           </div>
           <div className="text-sm text-gray-600 text-center md:text-left">
             © {new Date().getFullYear()} <span className="font-medium text-blue-600">Yaseen</span>. All rights reserved.
