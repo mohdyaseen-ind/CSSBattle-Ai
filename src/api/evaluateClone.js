@@ -14,7 +14,7 @@ User's code:
 ${userHtml}
 
 Respond in this JSON format:
-{
+{  
   "feedback": "...",
   "score": 90
 }
