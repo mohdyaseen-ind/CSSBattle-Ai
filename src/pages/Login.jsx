@@ -15,7 +15,7 @@ const Login = () => {
     } catch (error) {
       alert("Login failed: " + error.message);
     }
-  };
+  };     
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-black text-white p-6">
